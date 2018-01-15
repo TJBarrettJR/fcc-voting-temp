@@ -1,0 +1,58 @@
+.form-group
+  label(for="question") Question:
+  input#question.form-control(type="text" placeholder="Enter your question here." required)
+  .invalid-feedback Please provide a question for the poll.
+.form-group
+  label(for="choices") Options:
+  #need-more-options.invalid-feedback Please enter two or more options.
+  ul#choices.list-group
+    each item in options
+      li.list-group-item(id="" + item.id) #{item.text}
+  br
+  .form-group
+    .input-group
+      input#newChoice.form-control(type="text" placeholder="Enter a new option here." required)
+      span.input-group-btn
+        button#addChoice.btn.btn-success(type="button" onclick="addOption()")
+          span.octicon.octicon-plus
+      .invalid-feedback Please provide a valid option.
+        
+script.  
+  function addOption() {
+    var newChoice = $("#newChoice");
+    
+    if (newChoice.val() === "") { // TODO: check if matching item already exists
+      newChoice.addClass("is-invalid");
+      return;
+    }
+    
+    newChoice.removeClass("is-invalid");
+    
+    var useID = 0;
+    var choices = $("#choices");
+    var choicesChildren = choices.children();
+    
+    if (choicesChildren.length > 0) {
+      useID = +choicesChildren[choicesChildren.length - 1].id + 1;
+    } else {
+      useID = 1;  
+    }
+    // TODO: fix this as well
+    choices.append("<li id=" + useID + " class='list-group-item'>" + newChoice.val() + "<button type='button' class='close' aria-label='close'><span class='text-danger' aria-hidden='true'>&times;</span></button></li>");
+    newChoice.val("");
+    newChoice.focus();
+  }
+  
+  function validatePoll() { // TODO: finish hooking this up
+    if ($("#question").val() === "") {
+      $("#question").addClass("is-invalid");
+    } else {
+      $("#question").removeClass("is-invalid");
+    }
+  
+    if ($("#choices").children().length < 2) {
+      $("#need-more-options").css("display", "block");
+    } else {
+      $("#need-more-options").css("display", "none");
+    }
+  }

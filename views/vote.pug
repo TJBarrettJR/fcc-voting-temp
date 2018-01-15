@@ -1,0 +1,15 @@
+doctype html
+html
+  include includes/head.pug
+  body
+    
+    include includes/mainNav.pug
+    #container
+      if !voted
+        include components/poll.pug
+      else
+        include components/pollResults.pug
+    
+    include includes/footer.pug
+    
+    include includes/scripts.pug
