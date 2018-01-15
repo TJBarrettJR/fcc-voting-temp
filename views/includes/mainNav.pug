@@ -1,0 +1,38 @@
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href="/") Voting App
+  button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent")
+    span.navbar-toggler-icon
+  
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link(href="#") Home
+          span.sr-only (current)
+      li.nav-item
+        if user
+          a.nav-link(href="/new") New Poll
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Recent Polls
+        .dropdown-menu(aria-labelledby="navbarDropdown")
+          a.dropdown-item(href="#") Poll 1
+          a.dropdown-item(href="#") Poll 2
+          a.dropdown-item(href="#") Poll 3
+          a.dropdown-item(href="#") Poll 4
+          a.dropdown-item(href="#") Poll 5
+          .dropdown-divider
+          a.dropdown-item(href="#") More Polls
+    form.form-inline.my-2.my-lg-0.mr-4
+      input.form-control.mr-sm-2(type="search" placeholder="Search" aria-label="Search")
+      button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
+    if user
+      span.navbar-text.mr-2 Hello #{user.displayName}
+      .dropdown.navbar-nav
+        a#navbarDropdownSettings.nav-link.dropdown-toggle.mr-3(href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+          span.octicon.octicon-gear.light
+        .dropdown-menu(aria-labelledby="navbarDropdown")
+          a.dropdown-item(href="/account") Account Info
+          a.dropdown-item(href="#") My Polls
+          a.dropdown-item(href="#") My Votes
+      a.btn.btn-outline-danger(href="/logout") Logout
+    else
+      a.btn.btn-outline-primary.nav-link(href="/login") Login

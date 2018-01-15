@@ -1,0 +1,17 @@
+ul.list-group
+each comment in comments
+  li.list-group-item(class="comment" + comment.id)
+    p #{comment.text}
+    h6 by #{comment.author}
+form
+  .form-group
+  label Add a new comment
+  if user
+    textarea#new-comment-text.form-control(rows=3 placeholder="Enter your comment here.")
+    button#new-comment-submit.btn.btn-primary.float-right.mt-2.mr-1(type="submit") Submit
+  else
+    // TODO: fix this to get better tool tips
+    a(href="#" data-toggle="tooltip" data-placement="bottom" title="You must log in to use this feature.")
+      textarea#new-comment-text.form-control(rows=3 placeholder="Enter your comment here." disabled)
+    a(href="#" data-toggle="tooltip" data-placement="bottom" title="You must log in to use this feature.")
+      button#new-comment-submit.btn.btn-primary.float-right.mt-2.mr-1(type="submit" disabled) Submit

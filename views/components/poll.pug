@@ -1,0 +1,24 @@
+.jumbotron
+  h1 Select an answer below!
+
+.row
+  .col-sm
+    .container.ml-3
+      h1 #{question}
+      h4.text-center by #{author}
+  .col-sm
+    .container
+      ul.list-group
+      each item in options
+        li.list-group-item 
+          label.form-check-label
+            input.form-check-input(id="selection" + item.id type="radio" name="selection", value="" + item.id)
+            strong #{item.text}
+      if user
+        button#submit.btn.btn-primary.btn-lg.float-right.mt-2.mr-2 Submit
+      else
+        a(href="#" data-toggle="tooltip" data-placement="bottom" title="You must log in to use this feature.")
+          button#submit.btn.btn-primary.btn-lg.float-right.mt-2.mr-2(disabled) Submit
+  .col-sm
+    .container.mr-3
+      include pollComments.pug
